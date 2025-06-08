@@ -1,7 +1,9 @@
 FROM node:latest 
-COPY . /src
-WORKDIR /src 
 
+COPY ./src/package.json ./
+COPY ./src/index.js ./
 RUN npm install
+COPY ./ ./
 
-CMD ["node", "index.js"]
+
+CMD ["node", "src/index.js"]
