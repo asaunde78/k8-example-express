@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:${{  github.ref_name }}
           cache-to: type=inline
           tags: |
