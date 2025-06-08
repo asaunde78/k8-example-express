@@ -1,0 +1,22 @@
+{
+  "name": "k8-example-express",
+  "version": "1.0.0",
+  "description": "I want to make a really simple express application that I can deploy in k8s",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asaunde78/k8-example-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asaunde78/k8-example-express/issues"
+  },
+  "homepage": "https://github.com/asaunde78/k8-example-express#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
