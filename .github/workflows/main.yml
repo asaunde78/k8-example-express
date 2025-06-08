@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build and Push
     runs-on: ubuntu-latest
     steps:
       - name: 'Get tags'
@@ -30,10 +31,10 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: ${{ github.ref == 'refs/heads/main' }}
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:${{  github.ref_name }}"
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:${{  github.ref_name }}
           cache-to: type=inline
           tags: |
-            ghcr.io/${{ github.repository }}:${{  github.ref_name }}"
+            ghcr.io/${{ github.repository }}:${{  github.ref_name }}
           build-args: |
             git_sha=${{ github.sha }}
   bump:
