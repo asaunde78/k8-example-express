@@ -3,7 +3,7 @@ name: Build and Push Images to GHCR
 on:
   push:
     tags:
-      - *
+      - "*"
 
 
 jobs:
