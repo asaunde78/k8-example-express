@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
           run:
-            working-directory: './Store'
+            working-directory: 'node index.js'
         steps:
           - name: 'Checkout GitHub Action'
             uses: actions/checkout@main
@@ -28,5 +28,5 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --tag ghcr.io/{{ github.repository}}:latest
-              docker push ghcr.io/{{ github.repository}}:latest
+              docker build . --tag ghcr.io/{{ github.repository }}:latest
+              docker push ghcr.io/{{ github.repository }}:latest
