@@ -1,5 +1,5 @@
 apiVersion: v2
-name: k8-expressjs
+name: k8-example-express
 description: Testing out express in k8s
 type: application
 version: 0.0.1
