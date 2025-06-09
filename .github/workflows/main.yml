@@ -1,21 +1,23 @@
 name: Build and Push Images to GHCR
-
 on:
   push:
-    tags:
-      - "*"
-
+    branches:
+      - 'main'
 
 jobs:
   build:
     name: Build and Push
     runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.tag.outputs.new_release_version }}
     steps:
-      - name: 'Get tags'
-        run: |
-          echo "Tag name: ${{ github.ref_name}}" 
-      - name: 'Checkout GitHub Action'
-        uses: actions/checkout@main
+      - name: Get Tag
+        uses: cycjimmy/semantic-release-action@v4
+        id: tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAC }}
+        with:
+          dry_run: true
 
       - name: 'Login to GitHub Container Registry'
         uses: docker/login-action@v2
@@ -37,6 +39,17 @@ jobs:
             ghcr.io/${{ github.repository }}:${{  github.ref_name }}
           build-args: |
             git_sha=${{ github.sha }}
+            
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.GITHUBAPP_PRIVATE_KEY }}
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
   bump:
     name: Bump Helm Version
     runs-on: ubuntu-latest
