@@ -8,6 +8,7 @@ jobs:
   build:
     name: Build and Push
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'sometimes-forevercd[bot]' }}
     outputs:
       new_version: ${{ steps.tag.outputs.new_release_version }}
     steps:
