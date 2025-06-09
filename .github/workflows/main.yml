@@ -37,10 +37,10 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:${{  github.ref_name }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:${{  steps.tag.outputs.new_release_version }}
           cache-to: type=inline
           tags: |
-            ghcr.io/${{ github.repository }}:${{  github.ref_name }}
+            ghcr.io/${{ github.repository }}:${{  steps.tag.outputs.new_release_version }}
           build-args: |
             git_sha=${{ github.sha }}
 
@@ -85,5 +85,5 @@ jobs:
 
       - name: Package and push helm chart
         run: |
-          helm package ./helm --version ${{ github.ref_name }}
-          helm push ./${{ github.event.repository.name }}-${{ github.ref_name }}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
+          helm package ./helm --version ${{ needs.build.outputs.new_version }}
+          helm push ./${{ github.event.repository.name }}-${{ needs.build.outputs.new_version }}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
