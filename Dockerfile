@@ -1,4 +1,4 @@
-FROM node:latest 
+FROM --platform=aarch64 node:latest 
 
 COPY ./src/package.json ./
 COPY ./src/index.js ./

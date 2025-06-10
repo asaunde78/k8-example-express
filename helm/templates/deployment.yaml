@@ -18,5 +18,5 @@ spec:
         image: ghcr.io/asaunde78/k8-example-express:{{ .Chart.AppVersion }} # This is auto updated by the release mechanism
         imagePullPolicy: Always
         ports:
-        - containerPort: {{ .Values.containerPort | default 8080 }}
+        - containerPort: {{ .Values.containerPort | default 8085 }}
         
