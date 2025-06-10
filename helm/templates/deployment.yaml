@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ lower .Chart.Name }}
-        image: ghcr.io/asaunde78/k8-example-express:{{ .Chart.AppVersion }} # This is auto updated by the release mechanism
+        image: oci://ghcr.io/asaunde78/k8-example-express:{{ .Chart.AppVersion }} # This is auto updated by the release mechanism
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.containerPort | default 8080 }}
