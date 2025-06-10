@@ -1,4 +1,4 @@
-FROM arm64v8/node:20.9.0
+FROM node:latest
 
 COPY ./src/package.json ./
 COPY ./src/index.js ./
